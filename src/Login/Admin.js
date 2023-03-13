@@ -1,49 +1,62 @@
 import Cookies from 'js-cookie';
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import './Admin.css';
 function Home() {
     const navigate = useNavigate();
     const location = useLocation();
     const name = location.state.username
-    console.log(name);
     const LogOut = () => {
         Cookies.set('isLoggedIn', false);
+        Cookies.set('User', '');
         navigate('/');
         window.location.reload();
     }
     return (
-        <div class="sidebar">
-            <div class="sidebar__sections">
-                <ul>
-                    <li><a href="#">
-                        <svg class="lnr lnr-layers icon"><use xlink:href="#lnr-layers"></use></svg>
-                        Pages</a></li>
-                    <li><a href="#">
-                        <svg class="lnr lnr-map-marker icon"><use xlink:href="#lnr-map-marker"></use></svg>
-                        Destinations</a>
-                    </li>
-                    <li><a href="#">
-                        <svg class="lnr lnr-book icon"><use xlink:href="#lnr-book"></use></svg>
-                        Blog</a></li>
-                    <li><a href="#">
-                        <svg class="lnr lnr-bus icon"><use xlink:href="#lnr-bus"></use></svg>
-                        Travel Shows</a></li>
-                    <li><a href="#">
-                        <svg class="lnr lnr-bubble icon"><use xlink:href="#lnr-bubble"></use></svg>
-                        Testimonials</a></li>
+        <div>
+            <header role="banner">
+                <h1>Admin Panel</h1>
+                <ul className="utilities">
+                    <br />
+                    <li className="users"><a href="#">{name}</a></li>
+                    <li className="logout warn"><a  href="#" onClick={LogOut}>Log Out</a></li>
                 </ul>
-            </div>
-            <div class="sidebar__subsections">
-                <div class="sidebar__subsections-brand">Admin 1.0</div>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Showcase</a></li>
-                    <li><a href="#">Contact</a></li>
+            </header>
+            <nav role='navigation'>
+                <ul className="main">
+                    <li className="dashboard"><a href="admindashboard">Dashboard</a></li>
+                    <li className="edit"><a href="#">Edit Website</a></li>
+                    <li className="write"><a href="#">Write news</a></li>
+                    <li className="comments"><a href="#">Ads</a></li>
+                    <li className="users"><a href="#">Manage Users</a></li>
                 </ul>
-            </div>
+            </nav>
+
+            <main role="main">
+
+                <div className="panel important">
+                    <h2>Write Some News</h2>
+                    <ul>
+                        <li>Information Panel</li>
+                    </ul>
+                </div>
+
+                <div className="panel important">
+                    <h2>Write a post</h2>
+                    <form>
+                        <div className="twothirds">
+                            Blog title:<br />
+                            <input type="text" name="title" size="40" /><br /><br />
+                            Content:<br />
+                            <textarea name="newstext" rows="15" cols="67"></textarea><br />
+                        </div>
+                        <div>
+                            <input type="submit" name="submit" value="Save" />
+                        </div>
+                    </form>
+                </div>
+
+            </main>
         </div>
     );
 }

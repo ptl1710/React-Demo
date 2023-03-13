@@ -1,9 +1,9 @@
-import './App.css';
 import { useState } from 'react';
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-// import login from './login';
+import './LoginForm.css';
+
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,19 +17,9 @@ function Login() {
         setPassword(event.target.value);
     };
     let useAccount = [
-        {
-            Id: '1',
-            UserName: 'admin',
-            Password: '123456',
-            Role: 'admin'
-        },
-        {
-            Id: '2',
-            UserName: 'longpt',
-            Password: 'ken',
-            Role: 'user',
-        },
-
+        { username: 'admin', password: '123456', role: 'admin' },
+        { username: 'longpt', password: '171000', role: 'user' },
+        { username: 'user3', password: 'password3', role: 'user' }
     ]
     // async function handleSubmit(event) {
     //     event.preventDefault();
@@ -43,22 +33,24 @@ function Login() {
     //   }
     const login = (event) => {
         event.preventDefault();
-        console.log(username, password)
-        console.log(useAccount[1].UserName)
+        const account = useAccount.find(account => account.username === username && account.password === password);
         if (username.trim() === '' || password.trim() === '') {
             setErrorMessage('Tên đăng nhập hoặc mật khẩu không được để trống');
         }
         // kiểm tra tài khoản và mật khẩu ở đây
-        else if (useAccount.find(useAccount => useAccount.UserName === username && useAccount.Password === password)) {
+        else if (account) {
             // nếu đăng nhập thành công, lưu trạng thái login vào cookie
             Cookies.set('isLoggedIn', 'true', { expires: 1 });
+            Cookies.set('User', username);
             // chuyển hướng sang trang Home
-            if (useAccount.find(useAccount => useAccount.Role === 'admin')) {
+            if (account.role === 'admin') {
                 navigate('/admin', { state: { username } });
                 window.location.reload();
             }
-            navigate('/admin', { state: { username } });
-            window.location.reload();
+            else {
+                navigate('/', { state: { username } });
+                window.location.reload();
+            }
         } else {
             // nếu đăng nhập không thành công, hiển thị thông báo lỗi
             setErrorMessage('Vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu');
@@ -76,7 +68,7 @@ function Login() {
                     <input type="password" value={password} onChange={handleChangePassWord} />
                     <label>Password</label>
                 </div>
-                <button type='submit'>
+                <button className="btn-submit" type='submit'>
                     Submit
                 </button>
                 <p style={{ color: 'red' }}>{errorMessage}</p>
