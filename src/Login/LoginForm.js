@@ -9,16 +9,31 @@ function Login() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     let navigate = useNavigate();
+
     const handleChangeUserName = (event) => {
         setUsername(event.target.value);
     };
     const handleChangePassWord = (event) => {
         setPassword(event.target.value);
     };
+    let useAccount = [
+        {
+            Id: '1',
+            UserName: 'admin',
+            Password: '123456',
+            Role: 'admin'
+        },
+        {
+            Id: '2',
+            UserName: 'longpt',
+            Password: 'ken',
+            Role: 'user',
+        },
 
+    ]
     // async function handleSubmit(event) {
     //     event.preventDefault();
-    
+
     //     try {
     //       const user = await login(username, password);
     //       console.log('Logged in as', user.username);
@@ -28,22 +43,27 @@ function Login() {
     //   }
     const login = (event) => {
         event.preventDefault();
-        console.log(username,password)
-        if(username.trim()===''||password.trim()===''){
+        console.log(username, password)
+        console.log(useAccount[1].UserName)
+        if (username.trim() === '' || password.trim() === '') {
             setErrorMessage('Tên đăng nhập hoặc mật khẩu không được để trống');
         }
         // kiểm tra tài khoản và mật khẩu ở đây
-       else if (username === 'admin' && password === '123456') {
-          // nếu đăng nhập thành công, lưu trạng thái login vào cookie
-          Cookies.set('isLoggedIn', 'true', { expires: 1 });
-          // chuyển hướng sang trang Home
-          navigate('/home',{state:{username}});
-          window.location.reload();
+        else if (useAccount.find(useAccount => useAccount.UserName === username && useAccount.Password === password)) {
+            // nếu đăng nhập thành công, lưu trạng thái login vào cookie
+            Cookies.set('isLoggedIn', 'true', { expires: 1 });
+            // chuyển hướng sang trang Home
+            if (useAccount.find(useAccount => useAccount.Role === 'admin')) {
+                navigate('/admin', { state: { username } });
+                window.location.reload();
+            }
+            navigate('/admin', { state: { username } });
+            window.location.reload();
         } else {
-          // nếu đăng nhập không thành công, hiển thị thông báo lỗi
-          setErrorMessage('Vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu');
+            // nếu đăng nhập không thành công, hiển thị thông báo lỗi
+            setErrorMessage('Vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu');
         }
-      };
+    };
     return (
         <div className='login-box'>
             <h2>Login</h2>
