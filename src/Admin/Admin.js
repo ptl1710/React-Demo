@@ -13,8 +13,8 @@ function Home() {
         window.location.reload();
     }
     return (
-        <div>
-            <header role="banner">
+        <div className='body-admin'>
+            <header role="banner" className='header-banner'>
                 <h1>Admin Panel</h1>
                 <ul className="utilities">
                     <br />
@@ -22,7 +22,7 @@ function Home() {
                     <li className="logout warn"><a  href="#" onClick={LogOut}>Log Out</a></li>
                 </ul>
             </header>
-            <nav role='navigation'>
+            <nav role='navigation' className='nav-navigation'>
                 <ul className="main">
                     <li className="dashboard"><a href="admindashboard">Dashboard</a></li>
                     <li className="edit"><a href="#">Edit Website</a></li>

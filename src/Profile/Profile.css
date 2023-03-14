@@ -1,0 +1,45 @@
+.body-profile{
+        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); /*use the ai_image.jpeg as the background-image. */
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica;
+        display: flex;
+        flex-direction: column;
+        justify-items:center;
+        align-items: center;
+        background-color:#031632;
+        height: 100vh;
+        margin-top: 7vh;
+}
+#pictureAndChooseFileDiv{
+    align-self: flex-start;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+  }
+  #pictureAndChooseFileDiv img{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+  }
+  #Portrait-header{
+    margin: 2vh 0;
+    color: white;
+  }
+  
+  #personalInfoLabel{
+    color:white;
+  }
+  
+  
+  
+  .personalInfoFilling-field{
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    /* outline: none; */
+    padding: 0px 0px 5px 5px;
+    width: 500px;
+  }

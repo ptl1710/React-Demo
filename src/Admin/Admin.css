@@ -11,12 +11,12 @@ html {
   box-sizing: inherit;
 }
 
-body {
+.body-admin {
   font-family: "Open Sans", arial, sans-serif;
   color: darkslategray;
 }
 
-body.login {
+.body-admin .login {
   background-color: white;
   max-width: 500px;
   margin: 10vh auto;
@@ -29,30 +29,30 @@ body.login {
 }
 
 /* header */
-header[role="banner"] {
+.header-banner {
   background: white;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
 }
-header[role="banner"] h1 {
+.header-banner h1 {
   margin: 0;
   font-weight: 300;
   padding: 1rem;
 }
-header[role="banner"] h1:before {
+.header-banner h1:before {
   content: "\f248";
   font-family: FontAwesome;
   padding-right: 0.6em;
   color: red;
 }
-header[role="banner"] .utilities {
+.header-banner .utilities {
   width: 100%;
   background: slategray;
   color: #ddd;
 }
-header[role="banner"] .utilities li {
+.header-banner .utilities li {
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
 }
-header[role="banner"] .utilities li a {
+.header-banner .utilities li a {
   padding: 0.7em;
   display: block;
 }
@@ -72,41 +72,41 @@ header[role="banner"] .utilities li a {
   content: "";
 }
 
-nav[role="navigation"] {
+.nav-navigation {
   background: #2a3542;
   color: #ddd;
   /* icons */
 }
-nav[role="navigation"] li {
+.nav-navigation li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-nav[role="navigation"] li a {
+.nav-navigation li a {
   color: #ddd;
   text-decoration: none;
   display: block;
   padding: 0.7em;
 }
-nav[role="navigation"] li a:hover {
+.nav-navigation li a:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
-nav[role="navigation"] li a:before {
+.nav-navigation li a:before {
   content: "\f248";
   font-family: FontAwesome;
   padding-right: 0.6em;
 }
-nav[role="navigation"] .dashboard a:before {
+.nav-navigation .dashboard a:before {
   content: "";
 }
-nav[role="navigation"] .write a:before {
+.nav-navigation .write a:before {
   content: "";
 }
-nav[role="navigation"] .edit a:before {
+.nav-navigation .edit a:before {
   content: "";
 }
-nav[role="navigation"] .comments a:before {
+.nav-navigation .comments a:before {
   content: "";
 }
-nav[role="navigation"] .users a:before {
+.nav-navigation .users a:before {
   content: "";
 }
 
@@ -119,13 +119,7 @@ nav[role="navigation"] .users a:before {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-footer[role="contentinfo"] {
-  background: slategray;
-  color: #ddd;
-  font-size: 0.8em;
-  text-align: center;
-  padding: 0.2em;
-}
+
 
 /* panels */
 .panel {

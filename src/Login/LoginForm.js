@@ -2,8 +2,8 @@ import { useState } from 'react';
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import './LoginForm.css';
-
+import LoginStyle from './LoginForm.module.scss';
+import useAccount from '../Data/userData';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -16,24 +16,11 @@ function Login() {
     const handleChangePassWord = (event) => {
         setPassword(event.target.value);
     };
-    let useAccount = [
-        { username: 'admin', password: '123456', role: 'admin' },
-        { username: 'longpt', password: '171000', role: 'user' },
-        { username: 'user3', password: 'password3', role: 'user' }
-    ]
-    // async function handleSubmit(event) {
-    //     event.preventDefault();
-
-    //     try {
-    //       const user = await login(username, password);
-    //       console.log('Logged in as', user.username);
-    //     } catch (error) {
-    //       console.error('Failed to login:', error.message);
-    //     }
-    //   }
+    
     const login = (event) => {
         event.preventDefault();
         const account = useAccount.find(account => account.username === username && account.password === password);
+        console.log(account)
         if (username.trim() === '' || password.trim() === '') {
             setErrorMessage('Tên đăng nhập hoặc mật khẩu không được để trống');
         }
@@ -48,7 +35,7 @@ function Login() {
                 window.location.reload();
             }
             else {
-                navigate('/', { state: { username } });
+                navigate('/', { state: { account} });
                 window.location.reload();
             }
         } else {
@@ -57,23 +44,26 @@ function Login() {
         }
     };
     return (
-        <div className='login-box'>
-            <h2>Login</h2>
-            <form onSubmit={login}>
-                <div className="user-box">
-                    <input type="text" value={username} onChange={handleChangeUserName} />
-                    <label>Username</label>
-                </div>
-                <div className="user-box">
-                    <input type="password" value={password} onChange={handleChangePassWord} />
-                    <label>Password</label>
-                </div>
-                <button className="btn-submit" type='submit'>
-                    Submit
-                </button>
-                <p style={{ color: 'red' }}>{errorMessage}</p>
-            </form>
+        <div className={LoginStyle["All"]}>
+            <div className={LoginStyle['login-box']}>
+                <h2>Login</h2>
+                <form onSubmit={login}>
+                    <div className={LoginStyle["user-box"]}>
+                        <input type="text" value={username} onChange={handleChangeUserName} />
+                        <label>Username</label>
+                    </div>
+                    <div className={LoginStyle["user-box"]}>
+                        <input type="password" value={password} onChange={handleChangePassWord} />
+                        <label>Password</label>
+                    </div>
+                    <button className={LoginStyle["btn-submit"]} type='submit'>
+                        Submit
+                    </button>
+                    <p style={{ color: 'red' }}>{errorMessage}</p>
+                </form>
+            </div>
         </div>
     );
 }
+
 export default Login;
